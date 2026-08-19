@@ -46,12 +46,20 @@ class BusService:
         for route in routes:
             orig_rs = db.query(RouteStop).filter(RouteStop.route_id == route.id, RouteStop.stop_id == near_origin.id).first()
             dest_rs = db.query(RouteStop).filter(RouteStop.route_id == route.id, RouteStop.stop_id == near_dest.id).first()
-            
-            if orig_rs and dest_rs and orig_rs.stop_sequence < dest_rs.stop_sequence:
-                matching_route = route
-                orig_stage = orig_rs.stage_number
-                dest_stage = dest_rs.stage_number
-                break
+
+            # Use stage_number as the authoritative ordering for fare/stage calculations.
+            # Require both route-stop entries to have stage_number present; skip route otherwise.
+            if orig_rs and dest_rs:
+                orig_stage_num = getattr(orig_rs, "stage_number", None)
+                dest_stage_num = getattr(dest_rs, "stage_number", None)
+                if orig_stage_num is not None and dest_stage_num is not None:
+                    # Only accept routes where origin stage < destination stage (forward direction)
+                    if orig_stage_num < dest_stage_num:
+                        matching_route = route
+                        orig_stage = orig_stage_num
+                        dest_stage = dest_stage_num
+                        break
+                # If stage_number missing for either, skip this route (do not fallback silently)
 
         if not matching_route or orig_stage is None or dest_stage is None:
             return cls._unsupported_response("No direct supported MTC corridor route found for this journey.")
