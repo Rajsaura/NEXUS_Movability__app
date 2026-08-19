@@ -1,0 +1,16 @@
+[
+  {
+    "id": "route_70g",
+    "route_number": "70G",
+    "service_category": "Ordinary",
+    "origin_stop_id": "stop_vit_vandalur",
+    "destination_stop_id": "stop_central"
+  },
+  {
+    "id": "route_21g",
+    "route_number": "21G",
+    "service_category": "Express",
+    "origin_stop_id": "stop_tambaram",
+    "destination_stop_id": "stop_central"
+  }
+]

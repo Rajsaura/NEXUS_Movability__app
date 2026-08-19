@@ -1,0 +1,46 @@
+{
+  "emission_factors": {
+    "bike": {
+      "mode": "BIKE",
+      "source_type": "CALCULATED_FROM_USER_INPUT",
+      "confidence": "MEDIUM",
+      "petrol_co2_factor_kg_per_l": 2.310,
+      "default_mileage_kmpl": 45.0,
+      "default_factor_value": 0.0513,
+      "unit": "kg_co2_per_km",
+      "source_name": "2006 IPCC Guidelines for National Greenhouse Gas Inventories",
+      "source_url": "https://www.ipcc-nggip.iges.or.in/public/2006gl/pdf/2_Volume2/V2_3_Ch3_Mobile_Combustion.pdf",
+      "scope": "tailpipe_combustion",
+      "ui_label": "Estimated CO2 based on documented assumptions"
+    },
+    "metro": {
+      "mode": "METRO",
+      "source_type": "ESTIMATED_WITH_ASSUMPTIONS",
+      "confidence": "MEDIUM",
+      "sec_kwh_per_pkm": 0.050,
+      "grid_factor_kg_per_kwh": 0.716,
+      "default_factor_value": 0.0358,
+      "unit": "kg_co2_per_passenger_km",
+      "source_name": "CEA CO2 Baseline Database v19 & DMRC/CMRL Operational Benchmarks",
+      "source_url": "https://cea.nic.in/cdm-co2-baseline-database-for-the-indian-power-sector/",
+      "scope": "operational_grid_scope2",
+      "assumptions": ["SEC: 0.050 kWh/p-km", "Grid Factor: 0.716 kg CO2/kWh"],
+      "ui_label": "Estimated CO2 based on documented assumptions"
+    },
+    "bus": {
+      "mode": "MTC_BUS",
+      "source_type": "ESTIMATED_WITH_ASSUMPTIONS",
+      "confidence": "MEDIUM",
+      "fuel_economy_kmpl": 3.50,
+      "diesel_co2_factor_kg_per_l": 2.680,
+      "average_occupancy": 30,
+      "default_factor_value": 0.0255,
+      "unit": "kg_co2_per_passenger_km",
+      "source_name": "India GHG Platform & WRI India Urban Transit Benchmarks",
+      "source_url": "http://www.ghgplatform-india.org/",
+      "scope": "tailpipe_combustion_per_passenger",
+      "assumptions": ["Fuel Economy: 3.50 km/L", "Average Occupancy: 30 passengers/bus"],
+      "ui_label": "Estimated CO2 based on documented assumptions"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+[
+  { "service_category": "Ordinary", "min_stages": 1, "max_stages": 1, "fare_inr": 5.0 },
+  { "service_category": "Ordinary", "min_stages": 2, "max_stages": 2, "fare_inr": 6.0 },
+  { "service_category": "Ordinary", "min_stages": 3, "max_stages": 3, "fare_inr": 7.0 },
+  { "service_category": "Ordinary", "min_stages": 4, "max_stages": 4, "fare_inr": 8.0 },
+  { "service_category": "Ordinary", "min_stages": 5, "max_stages": 5, "fare_inr": 9.0 },
+  { "service_category": "Ordinary", "min_stages": 6, "max_stages": 6, "fare_inr": 10.0 },
+  { "service_category": "Ordinary", "min_stages": 7, "max_stages": 8, "fare_inr": 12.0 },
+  { "service_category": "Ordinary", "min_stages": 9, "max_stages": 10, "fare_inr": 15.0 },
+  { "service_category": "Ordinary", "min_stages": 11, "max_stages": 12, "fare_inr": 18.0 },
+  { "service_category": "Ordinary", "min_stages": 13, "max_stages": 99, "fare_inr": 23.0 },
+
+  { "service_category": "Express", "min_stages": 1, "max_stages": 1, "fare_inr": 7.0 },
+  { "service_category": "Express", "min_stages": 2, "max_stages": 2, "fare_inr": 9.0 },
+  { "service_category": "Express", "min_stages": 3, "max_stages": 3, "fare_inr": 11.0 },
+  { "service_category": "Express", "min_stages": 4, "max_stages": 4, "fare_inr": 13.0 },
+  { "service_category": "Express", "min_stages": 5, "max_stages": 6, "fare_inr": 16.0 },
+  { "service_category": "Express", "min_stages": 7, "max_stages": 8, "fare_inr": 20.0 },
+  { "service_category": "Express", "min_stages": 9, "max_stages": 12, "fare_inr": 26.0 },
+  { "service_category": "Express", "min_stages": 13, "max_stages": 99, "fare_inr": 35.0 },
+
+  { "service_category": "Deluxe", "min_stages": 1, "max_stages": 1, "fare_inr": 9.0 },
+  { "service_category": "Deluxe", "min_stages": 2, "max_stages": 2, "fare_inr": 11.0 },
+  { "service_category": "Deluxe", "min_stages": 3, "max_stages": 3, "fare_inr": 14.0 },
+  { "service_category": "Deluxe", "min_stages": 4, "max_stages": 4, "fare_inr": 17.0 },
+  { "service_category": "Deluxe", "min_stages": 5, "max_stages": 6, "fare_inr": 21.0 },
+  { "service_category": "Deluxe", "min_stages": 7, "max_stages": 8, "fare_inr": 27.0 },
+  { "service_category": "Deluxe", "min_stages": 9, "max_stages": 12, "fare_inr": 35.0 },
+  { "service_category": "Deluxe", "min_stages": 13, "max_stages": 99, "fare_inr": 48.0 }
+]

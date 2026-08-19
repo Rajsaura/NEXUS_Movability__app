@@ -1,0 +1,12 @@
+[
+  { "id": "stop_vit_vandalur", "name": "VIT Chennai / Vandalur Zoo", "latitude": 12.8785, "longitude": 80.0825, "stage_name": "Vandalur" },
+  { "id": "stop_perungalathur", "name": "Perungalathur", "latitude": 12.9050, "longitude": 80.0925, "stage_name": "Perungalathur" },
+  { "id": "stop_tambaram", "name": "Tambaram Sanatorium", "latitude": 12.9260, "longitude": 80.1175, "stage_name": "Tambaram" },
+  { "id": "stop_chromepet", "name": "Chromepet", "latitude": 12.9515, "longitude": 80.1410, "stage_name": "Chromepet" },
+  { "id": "stop_pallavaram", "name": "Pallavaram", "latitude": 12.9675, "longitude": 80.1485, "stage_name": "Pallavaram" },
+  { "id": "stop_airport", "name": "Chennai Airport", "latitude": 12.9815, "longitude": 80.1640, "stage_name": "Airport" },
+  { "id": "stop_guindy", "name": "Guindy Industrial Estate", "latitude": 13.0090, "longitude": 80.2130, "stage_name": "Guindy" },
+  { "id": "stop_saidapet", "name": "Saidapet", "latitude": 13.0235, "longitude": 80.2295, "stage_name": "Saidapet" },
+  { "id": "stop_teynampet", "name": "Teynampet", "latitude": 13.0410, "longitude": 80.2440, "stage_name": "Teynampet" },
+  { "id": "stop_central", "name": "Chennai Central Bus Station", "latitude": 13.0827, "longitude": 80.2757, "stage_name": "Chennai Central" }
+]

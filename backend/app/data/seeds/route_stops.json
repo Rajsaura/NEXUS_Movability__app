@@ -1,0 +1,21 @@
+[
+  { "route_id": "route_70g", "stop_id": "stop_vit_vandalur", "stop_sequence": 1, "stage_number": 1 },
+  { "route_id": "route_70g", "stop_id": "stop_perungalathur", "stop_sequence": 2, "stage_number": 2 },
+  { "route_id": "route_70g", "stop_id": "stop_tambaram", "stop_sequence": 3, "stage_number": 3 },
+  { "route_id": "route_70g", "stop_id": "stop_chromepet", "stop_sequence": 4, "stage_number": 5 },
+  { "route_id": "route_70g", "stop_id": "stop_pallavaram", "stop_sequence": 5, "stage_number": 6 },
+  { "route_id": "route_70g", "stop_id": "stop_airport", "stop_sequence": 6, "stage_number": 7 },
+  { "route_id": "route_70g", "stop_id": "stop_guindy", "stop_sequence": 7, "stage_number": 9 },
+  { "route_id": "route_70g", "stop_id": "stop_saidapet", "stop_sequence": 8, "stage_number": 10 },
+  { "route_id": "route_70g", "stop_id": "stop_teynampet", "stop_sequence": 9, "stage_number": 11 },
+  { "route_id": "route_70g", "stop_id": "stop_central", "stop_sequence": 10, "stage_number": 14 },
+
+  { "route_id": "route_21g", "stop_id": "stop_tambaram", "stop_sequence": 1, "stage_number": 1 },
+  { "route_id": "route_21g", "stop_id": "stop_chromepet", "stop_sequence": 2, "stage_number": 3 },
+  { "route_id": "route_21g", "stop_id": "stop_pallavaram", "stop_sequence": 3, "stage_number": 4 },
+  { "route_id": "route_21g", "stop_id": "stop_airport", "stop_sequence": 4, "stage_number": 5 },
+  { "route_id": "route_21g", "stop_id": "stop_guindy", "stop_sequence": 5, "stage_number": 7 },
+  { "route_id": "route_21g", "stop_id": "stop_saidapet", "stop_sequence": 6, "stage_number": 8 },
+  { "route_id": "route_21g", "stop_id": "stop_teynampet", "stop_sequence": 7, "stage_number": 9 },
+  { "route_id": "route_21g", "stop_id": "stop_central", "stop_sequence": 8, "stage_number": 12 }
+]
