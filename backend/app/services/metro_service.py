@@ -86,7 +86,8 @@ class MetroService:
                             "egress_time_min": egress_time,
                             "interchange_penalty": interchange_penalty,
                             "lines": list(lines_used),
-                            "total_time": round(total_time, 1)
+                            "total_time": round(total_time, 1),
+                            "wait_time": wait_time
                         }
                 except (nx.NetworkXNoPath, nx.NodeNotFound):
                     continue
@@ -111,15 +112,38 @@ class MetroService:
                 assumptions=["No path found"]
             )
 
-        # Retrieve fare from database
+        # Retrieve fare from database: try direct from->to, then reverse to->from.
         src_id = best_journey["source_station"].id
         dst_id = best_journey["dest_station"].id
         fare_record = db.query(MetroFare).filter(
             MetroFare.from_station_id == src_id,
             MetroFare.to_station_id == dst_id
         ).first()
-        
-        fare_inr = fare_record.fare_inr if fare_record else 40.0
+        if not fare_record:
+            fare_record = db.query(MetroFare).filter(
+                MetroFare.from_station_id == dst_id,
+                MetroFare.to_station_id == src_id
+            ).first()
+        # If fare not found in either direction, return a clear unsupported response (no silent fallback)
+        if not fare_record:
+            return TransportOption(
+                mode="METRO",
+                is_supported=False,
+                unsupported_reason="Fare data unavailable for the computed metro stations; cannot provide a reliable Metro option.",
+                total_distance_km=0.0,
+                total_time_minutes=0.0,
+                total_cost_inr=0.0,
+                estimated_co2_kg=0.0,
+                convenience_score=0.0,
+                provenance=ProvenanceMetadata(
+                    distance=ProvenanceMetric(value=0.0, unit="km", source_type=SourceTypeEnum.UNAVAILABLE, confidence=ConfidenceEnum.UNAVAILABLE),
+                    duration=ProvenanceMetric(value=0.0, unit="minutes", source_type=SourceTypeEnum.UNAVAILABLE, confidence=ConfidenceEnum.UNAVAILABLE),
+                    fare=ProvenanceMetric(value=0.0, unit="INR", source_type=SourceTypeEnum.UNAVAILABLE, confidence=ConfidenceEnum.UNAVAILABLE),
+                    co2=ProvenanceMetric(value=0.0, unit="kg", source_type=SourceTypeEnum.UNAVAILABLE, confidence=ConfidenceEnum.UNAVAILABLE)
+                ),
+                assumptions=["No fare record in either direction for the identified station pair."]
+            )
+        fare_inr = fare_record.fare_inr
         
         # Estimate network journey distance (approx 1.8 km per hop)
         network_hops = len(best_journey["path"]) - 1
@@ -187,6 +211,9 @@ class MetroService:
                 "lines_used": best_journey["lines"],
                 "interchange": "Alandur" if "Alandur" in station_names and len(best_journey["lines"]) > 1 else None,
                 "access_walk_min": best_journey["access_time_min"],
-                "egress_walk_min": best_journey["egress_time_min"]
+                "egress_walk_min": best_journey["egress_time_min"],
+                # Expose authoritative train and wait times for frontend display
+                "train_time_min": best_journey.get("train_time"),
+                "wait_time_min": best_journey.get("wait_time")
             }
         )
