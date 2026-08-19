@@ -98,8 +98,36 @@ export const ComparisonCards: React.FC<ComparisonCardsProps> = ({ options, recom
 
             {opt.details && opt.mode === 'METRO' && (
               <div style={{ marginTop: '0.75rem', fontSize: '0.78rem', color: 'var(--text-muted)', background: 'rgba(15, 23, 42, 0.4)', padding: '0.5rem', borderRadius: '0.375rem' }}>
-                <div><strong>Route:</strong> {opt.details.source_station} → {opt.details.dest_station}</div>
-                {opt.details.interchange && <div><strong>Interchange:</strong> {opt.details.interchange}</div>}
+                <div><strong>Access:</strong> Walk to {opt.details.source_station} • {opt.details.access_walk_min ?? opt.details.access_time_min ?? 0} mins</div>
+
+                <div style={{ marginTop: '0.25rem' }}>
+                  <strong>Metro:</strong> {opt.details.source_station} → {opt.details.dest_station}
+                  {opt.details.station_path && (
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                      Stations: {opt.details.station_path.join(' → ')}
+                    </div>
+                  )}
+
+                  <div style={{ fontSize: '0.78rem', marginTop: '0.25rem' }}>
+                    Fare: <strong>₹{opt.total_cost_inr?.toFixed(0)}</strong>
+                    {' • '}
+                    Lines: {opt.details.lines_used?.join(', ') || 'N/A'}
+                    {' • '}
+                    Train time: {opt.details.train_time_min ?? 'N/A'} mins
+                    {' • '}
+                    Wait: {opt.details.wait_time_min ?? 'N/A'} mins
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '0.25rem' }}>
+                  <strong>Last-mile:</strong> Walk from {opt.details.dest_station} • {opt.details.egress_walk_min ?? opt.details.egress_time_min ?? 0} mins
+                </div>
+
+                {opt.details.interchange && (
+                  <div style={{ marginTop: '0.25rem' }}>
+                    <strong>Interchange:</strong> {opt.details.interchange}
+                  </div>
+                )}
               </div>
             )}
           </div>
