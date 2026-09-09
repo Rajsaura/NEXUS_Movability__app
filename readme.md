@@ -1,7 +1,5 @@
 # Smart Commute Chennai — [Live Demo](https://nexus-movability-app-red.vercel.app/)
-
-
-### A Multi-Modal Commute Decision Platform for Chennai
+## A Multi-Modal Commute Decision Platform for Chennai
 
 Smart Commute Chennai is a transportation decision-support web application that helps commuters choose a suitable way to travel across Chennai. Instead of simply finding a route, the application compares transportation modes based on travel time, estimated cost, estimated CO2 emissions, and user-selected priorities, then scores and ranks the options to recommend the one that best matches the commuter's preference.
 
