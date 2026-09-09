@@ -1,4 +1,5 @@
-# Smart Commute Chennai
+# Smart Commute Chennai — [Live Demo](https://nexus-movability-app-red.vercel.app/)
+
 
 ### A Multi-Modal Commute Decision Platform for Chennai
 
