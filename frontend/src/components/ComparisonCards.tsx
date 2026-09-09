@@ -1,8 +1,48 @@
 import React from 'react';
 import { Bike, Train, Bus, AlertCircle } from 'lucide-react';
 
-interface TransportOption {
-  mode: string;
+interface ProvenanceMetric {
+  value?: unknown;
+  unit: string;
+  source_type: string;
+  confidence: string;
+}
+
+interface ProvenanceMetadata {
+  distance: ProvenanceMetric;
+  duration: ProvenanceMetric;
+  fare: ProvenanceMetric;
+  co2: ProvenanceMetric;
+  ui_co2_label?: string;
+}
+
+interface BikeDetails {
+  mileage_kmpl: number;
+  petrol_price: number;
+  fuel_used_litres: number;
+}
+
+interface MetroDetails {
+  source_station: string;
+  dest_station: string;
+  station_path: string[];
+  lines_used: string[];
+  interchange: string | null;
+  access_walk_min: number;
+  egress_walk_min: number;
+  train_time_min: number;
+  wait_time_min: number;
+}
+
+interface BusDetails {
+  route_number: string;
+  service_category: string;
+  boarding_stage: string;
+  alighting_stage: string;
+  stages_travelled: number;
+}
+
+interface BaseTransportOption {
   is_supported: boolean;
   unsupported_reason?: string;
   total_distance_km: number;
@@ -11,22 +51,34 @@ interface TransportOption {
   estimated_co2_kg: number;
   convenience_score: number;
   overall_score: number;
-  provenance: {
-    distance: { source_type: string; confidence: string };
-    duration: { source_type: string; confidence: string };
-    fare: { source_type: string; confidence: string };
-    co2: { source_type: string; confidence: string; ui_co2_label?: string };
-    ui_co2_label?: string;
-  };
+  provenance: ProvenanceMetadata;
   assumptions: string[];
-  details?: any;
 }
+
+type BikeTransportOption = BaseTransportOption & {
+  mode: 'BIKE';
+  details?: BikeDetails;
+};
+
+type MetroTransportOption = BaseTransportOption & {
+  mode: 'METRO';
+  details?: MetroDetails;
+};
+
+type BusTransportOption = BaseTransportOption & {
+  mode: 'MTC_BUS';
+  details?: BusDetails;
+};
+
+type TransportOption =
+  | BikeTransportOption
+  | MetroTransportOption
+  | BusTransportOption;
 
 interface ComparisonCardsProps {
   options: TransportOption[];
   recommendedMode: string;
 }
-
 export const ComparisonCards: React.FC<ComparisonCardsProps> = ({ options, recommendedMode }) => {
   return (
     <div className="modes-grid">
@@ -98,7 +150,7 @@ export const ComparisonCards: React.FC<ComparisonCardsProps> = ({ options, recom
 
             {opt.details && opt.mode === 'METRO' && (
               <div style={{ marginTop: '0.75rem', fontSize: '0.78rem', color: 'var(--text-muted)', background: 'rgba(15, 23, 42, 0.4)', padding: '0.5rem', borderRadius: '0.375rem' }}>
-                <div><strong>Access:</strong> Walk to {opt.details.source_station} • {opt.details.access_walk_min ?? opt.details.access_time_min ?? 0} mins</div>
+                <div><strong>Access:</strong> Walk to {opt.details.source_station} • {opt.details.access_walk_min} mins</div>
 
                 <div style={{ marginTop: '0.25rem' }}>
                   <strong>Metro:</strong> {opt.details.source_station} → {opt.details.dest_station}
@@ -120,7 +172,7 @@ export const ComparisonCards: React.FC<ComparisonCardsProps> = ({ options, recom
                 </div>
 
                 <div style={{ marginTop: '0.25rem' }}>
-                  <strong>Last-mile:</strong> Walk from {opt.details.dest_station} • {opt.details.egress_walk_min ?? opt.details.egress_time_min ?? 0} mins
+                  <strong>Last-mile:</strong> Walk from {opt.details.dest_station} • {opt.details.egress_walk_min} mins
                 </div>
 
                 {opt.details.interchange && (
